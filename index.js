@@ -14,6 +14,7 @@ app.get('/sigmet', (req, res) => {
   axios.get('https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php')
   .then(response => {
     res.json(response.data);
+    console.log(response.data.features[5]);
   });
   console.log("Fetched and returned to client");
 });

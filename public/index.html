@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <title>ESSA Dashboard</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="../sigmet/sigmet.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../plugins/leaflet-panel-layers.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -29,10 +30,26 @@
   </head>
   <body>
     <h1>ESSA-DASHBOARD</h1>
-    <div id="map1"></div>
+    <div id="sigmetWrapper">
+      <div id="sigmetMap"></div>
+      <div id="sigInfo">
+        <div id="sigTable">
+          <div class="sigRow" id="esaa">ESAA</div>
+          <div class="sigRow" id="enor">ENOR</div>
+          <div class="sigRow" id="efin">EFIN</div>
+          <div class="sigRow" id="eett">EETT</div>
+          <div class="sigRow" id="evrr">EVRR</div>
+        </div>
+        <div id="sigRaw">Original SIGMET:</div>
+        <div id="sigRefresh">
+          <p id="sigLatest">Senast uppdaterad: 12:25 UTC</p>
+          <button id="sigRefButton" onclick="sigmetRefresh()"><i class="fa fa-refresh"></i></button>
+        </div>
+      </div>
+    </div>
       
 
-    <script src="sigmetscript.js"></script>
+    <script src="../sigmet/sigmetscript.js"></script>
   </body>
 </html>
 
