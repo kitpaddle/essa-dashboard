@@ -45,10 +45,6 @@ a:hover {
   color: orange;
 }
 
-#sigmetMap .leaflet-popup-content-wrapper{
-  font-size: 10px;
-}
-
 /* MOBILE PHONES */
 @media only screen and (max-width: 768px) {
 

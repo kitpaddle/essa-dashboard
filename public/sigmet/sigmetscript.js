@@ -116,14 +116,19 @@ async function getSigmetData() {
 
 function fillSigList(firData, firName, t){
   if(firData.length>0){
-    document.getElementById(firName).innerHTML='<b>'+t+firData.length+"</b><ul>";
+    document.getElementById(firName).innerHTML='<li class="liHeader"><b>'+t+firData.length+"</b></li>";
     console.log("FIR name: "+firName);
     for(let i=0; i<firData.length;i++)
     {
       let a = firData[i].properties;
       if(a.base==0) a.base = "SFC";
       if(a.base < 6000 && !isNaN(a.base)) a.base += 'ft';
-      if(a.base > 6000 && !isNaN(a.base)) a.base = 'FL'+a.base.substring(0,3);
+      if(a.base > 6000 && !isNaN(a.base)){
+        if(a.base<10000)
+          a.base = 'FL0'+(a.base).toString().substring(0,2);
+        else
+          a.base = 'FL'+(a.base).toString().substring(0,3);
+      }
       if(a.top < 6000 && !isNaN(a.top)) a.top += 'ft';
       if(a.top > 6000 && !isNaN(a.top)){
         if(a.top<10000)
@@ -131,16 +136,15 @@ function fillSigList(firData, firName, t){
         else
           a.top = 'FL'+(a.top).toString().substring(0,3);
       } 
-
-      
       let output = a.seriesId+' '+a.qualifier+' '+a.hazard+' || '+a.base+' - '+a.top;
       document.getElementById(firName).innerHTML+='<li>'+output+'</li>';
     }
-    document.getElementById(firName).innerHTML+="</ul>";
+    
   } else {
-    document.getElementById(firName).innerHTML='<b>'+t+'0</b>';
+    document.getElementById(firName).innerHTML='<li class="liHeader"><b>'+t+'0</b></li>';
     console.log("FIR name: "+firName);
   }
+  document.getElementById(firName).innerHTML+="";
 }
 
 function setTooltip(feature, layer){
@@ -171,4 +175,7 @@ function sigmetRefresh(){
   
 }
 // Call once for init, call again at interval for updates or via button
-getSigmetData();
+//getSigmetData();
+//setInterval(getSigmetData, 600000);
+
+// COMMENTED DURING DEV TO NOT CALL API TOO OFTEN
